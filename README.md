@@ -1,15 +1,15 @@
-# PS3ToBle
+# PS3andNaviToBle
 
-By just using a ESP32, this project will allow you to use your PS3 Controller on Windows, Mac, Android and iOS systems (or any HID host!).
+This great work is thanks to aguaviva!!! [https://github.com/aguaviva/PS3ToBle](https://github.com/aguaviva/PS3ToBle). 
+Made by combining jvpernis [https://github.com/jvpernis/esp32-ps3](https://github.com/jvpernis/esp32-ps3) and [https://github.com/lemmingDev/ESP32-BLE-Gamepad](https://github.com/lemmingDev/ESP32-BLE-Gamepad).
 
-No drivers needed, it will just work!
+- I changed a few things to help my PS navigation controller work, like R1, L1, R2 trigger, L2 trigger, R3, L3.
 
-This project, although functional, required some changes in 2 of the libs it uses:
+- Display the ESP32 Bluetooth MAC address on the serial monitor
 
-- https://github.com/jvpernis/esp32-ps3
-  - I had to change the init code to get BLE and BT to cohexist.
-- https://github.com/lemmingDev/ESP32-BLE-Gamepad
-  - I added a descriptor to get the start and select buttons to work
+- I also stopped supporting GASIA devices because it didn't work that way.
 
-I am hoping the owners of these two libs can evaluate my changes and incorporate or suggest changes in my code as they see fit. 
+If you want to use the L,R buttons on GASIA devices, try using the PS3andNaviToBle.ino file here with the libraries [https://github.com/aguaviva/PS3ToBle/tree/main/libraries](https://github.com/aguaviva/PS3ToBle/tree/main/libraries).
+
+You may need to use older ESP32 libraries.
 
