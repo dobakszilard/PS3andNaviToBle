@@ -152,6 +152,64 @@ void notify()
         bleGamepad.release(BUTTON_4);
         updateBle = true;
     }
+
+           //--------------------L1,R1,L3,R3 Buttons ----------------
+
+    if ( Ps3.event.button_down.l1 ) 
+    {
+        //Serial.println("L1 button pressed");
+        bleGamepad.press(BUTTON_10);
+        updateBle = true;
+    }
+        
+    if ( Ps3.event.button_up.l1 ) 
+    {
+        //Serial.println("L1 button released");
+        bleGamepad.release(BUTTON_10);
+        updateBle = true;
+    }
+    
+    if ( Ps3.event.button_down.r1 ) 
+    {
+        //Serial.println("R1 button pressed");
+        bleGamepad.press(BUTTON_11);
+        updateBle = true;
+    }
+    
+    if ( Ps3.event.button_up.r1 ) 
+    {
+        //Serial.println("R1 button released");
+        bleGamepad.release(BUTTON_11);
+        updateBle = true;
+    }
+
+    if ( Ps3.event.button_down.l3 ) 
+    {
+        //Serial.println("L3 button pressed");
+        bleGamepad.press(BUTTON_12);
+        updateBle = true;
+    }
+    
+    if ( Ps3.event.button_up.l3 ) 
+    {
+         //Serial.println("L3 button released");
+         bleGamepad.release(BUTTON_12); 
+         updateBle = true;
+    }
+
+    if ( Ps3.event.button_down.r3 ) 
+    {
+         //Serial.println("R3 button pressed");
+         bleGamepad.press(BUTTON_13); 
+         updateBle = true;
+    }
+    
+    if ( Ps3.event.button_up.r3 ) 
+    {
+         //Serial.println("R3 button released");
+         bleGamepad.release(BUTTON_13);
+         updateBle = true;
+    }
     
     //---------------- Analog stick value events ---------------
     if( abs(Ps3.event.analog_changed.stick.lx) + abs(Ps3.event.analog_changed.stick.ly) > 2 ){
@@ -173,7 +231,22 @@ void notify()
 
     bleGamepad.setAxes(Ps3.data.analog.stick.lx, Ps3.data.analog.stick.ly, Ps3.data.analog.stick.rx, Ps3.data.analog.stick.ry, 0 , 0);
 
+ //---------------- Analog trigger value events ---------------
+    
+    if( abs(Ps3.event.analog_changed.button.l2) > 2) {
+    Serial.print("L2 Trigger value: ");
+    Serial.println(Ps3.data.analog.button.l2, DEC); 
+    bleGamepad.setLeftTrigger(Ps3.data.analog.button.l2);
+    updateBle = true;
+    }
 
+    if( abs(Ps3.event.analog_changed.button.r2) > 2) {
+    Serial.print("R2 Trigger value: ");
+    Serial.println(Ps3.data.analog.button.r2, DEC); 
+    bleGamepad.setRightTrigger(Ps3.data.analog.button.r2);
+    updateBle = true;
+    }
+   
     //--------------- Digital D-pad button events --------------
 
     static uint32_t dpad = 0;
@@ -436,6 +509,11 @@ void setup()
   Ps3.attachOnConnect(onConnect);
   Ps3.begin();
 
+  //The ESP32's Bluetooth MAC address
+  
+  String address = Ps3.getAddress();
+  Serial.print("The ESP32's Bluetooth MAC address is: ");
+  Serial.println(address);
 }
 
 void loop() 
