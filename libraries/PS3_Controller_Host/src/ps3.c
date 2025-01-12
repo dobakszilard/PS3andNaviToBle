@@ -96,7 +96,7 @@ bool ps3IsConnected()
 ** Returns          void
 **
 *******************************************************************************/
-/*
+
 void ps3Enable()
 {
     uint16_t len = sizeof(hid_cmd_payload_ps3_enable);
@@ -109,7 +109,8 @@ void ps3Enable()
 
     ps3_l2cap_send_hid( &hid_cmd, len );
 }
-*/
+
+/*
 #define GASIA
 void ps3Enable()
 {
@@ -143,7 +144,7 @@ void ps3Enable()
 #endif
     ps3_l2cap_send_hid( &hid_cmd, len );
 }
-
+*/
 /*******************************************************************************
 **
 ** Function         ps3Cmd
